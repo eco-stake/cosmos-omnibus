@@ -53,6 +53,12 @@ jobs:
             version: lucina
             repository: https://github.com/CosmosContracts/Juno
             namespace: JUNOD
+          - project: omniflixhub
+            project_bin: omniflixhubd
+            project_dir: .omniflixhub
+            version: v0.1.0
+            repository: https://github.com/Omniflix/omniflixhub.git
+            namespace: OMNIFLIXHUBD
     steps:
       - uses: actions/checkout@v2
       - name: build

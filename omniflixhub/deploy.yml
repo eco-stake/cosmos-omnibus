@@ -1,0 +1,44 @@
+---
+version: "2.0"
+
+services:
+  node:
+    image: ghcr.io/ovrclk/cosmos-omnibus:v0.0.4-omniflixhub-v0.1.0
+    env:
+      - MONIKER=node_1
+      - GENESIS_URL=https://github.com/ChandraStation/testnets/blob/main/flixnet-1/genesis.json?raw=true
+      - MINIMUM_GAS_PRICES=0.025uflix
+      - CHAIN_ID=flixnet-1
+      - P2P_SEEDS=3053e31532672aad3f05368084f120eab988d4aa@95.217.219.208:26656
+      - P2P_PERSISTENT_PEERS=449848dbf4c9efec273f9014b3e2ff7f2ca468e5@45.72.100.123:26656,086706a33dd2c511bf0162ee3583429a9e2ab1a5@45.72.100.124:26656
+    expose:
+      - port: 26657
+        as: 80
+        to:
+          - global: true
+      - port: 26656
+        to:
+          - global: true
+
+profiles:
+  compute:
+    node:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 2Gi
+        storage:
+          size: 60Gi
+  placement:
+    dcloud:
+      pricing:
+        node:
+          denom: uakt
+          amount: 100
+
+deployment:
+  node:
+    dcloud:
+      profile: node
+      count: 1
