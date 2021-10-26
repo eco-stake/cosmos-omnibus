@@ -151,4 +151,8 @@ fi
 echo "Node ID:"
 $PROJECT_BIN tendermint show-node-id
 
-exec "$@"
+if [ -n "$SNAPSHOT_PATH" ]; then
+  exec snapshot.sh "$PROJECT_CMD"
+else
+  exec "$@"
+fi
