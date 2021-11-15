@@ -1,0 +1,65 @@
+---
+version: "2.0"
+
+services:
+  node1:
+    image: paullovette/cgb_sentry
+    env:
+      - MONIKER=SkyNet_Validators
+      - CHAIN_BINARY=
+      - GENESIS_URL=
+      - CHAIN_ID=cgbtestnet1
+      - P2P_SEEDS=
+      - P2P_PERSISTENT_PEERS=199b185604cac73ee794cd4ab226d4f26d610ea1@144.202.92.109:26656,0420b3434b4e31aa12257b9c3e4bf93fe5f86e21@chainripper-2.althea.net:26656,c4e8b828fec1121015dfabbb2bd0abae7fcdf410@pool.bakon.dev:26656,8415e51a3b89f48baec7e3ab1bde16625dcf5e75@74.208.108.68:26656,3f9d32971928faea5da767b5c291ddb1ab70cb44@139.59.28.20:26656,ecd1ea68ff412f4497cfa54fd0bde73f44705289@18.197.229.193:26656,f22e02955dcda146352d66cc6fcff0bac2710990@94.250.203.3:26656,7b2dac268faef08c3eff013346c85f1c382d0804@168.119.148.245:36656
+      - STATESYNC_RPC_SERVERS=
+      - NODE_TYPE=sentry
+      - NODE_P2P_PEX=true
+      - NODE_UNCONDITIONAL_PEER_IDS=
+      - NODE_ADDR_BOOK_STRICT=false
+      - NODE_DOUBLE_SIGN_CHECK_HEIGHT=10
+      - BOOTSTRAP=1
+      - SNAPSHOT_URL=
+      - S3_KEY=
+      - S3_SECRET=
+      - S3_HOST=
+      - KEY_PATH=
+      - KEY_PASSWORD=
+      - MINIMUM_GAS_PRICES=
+      - PRUNING=everything
+    expose:
+      - port: 26656
+        as: 26656
+        to:
+          - global: true
+      - port: 26657
+        as: 26657
+        to:
+          - global: true
+
+profiles:
+  compute:
+    node1:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 8Gi
+        storage:
+          size: 150Gi
+  placement:
+    dcloud:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63
+      pricing:
+        node1:
+          denom: uakt
+          amount: 100
+
+deployment:
+  node1:
+    dcloud:
+      profile: node1
+      count: 1
