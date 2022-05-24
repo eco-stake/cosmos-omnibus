@@ -86,7 +86,6 @@ tagged with the form `$COSMOS_OMNIBUS_VERSION-$PROJECT-$PROJECT_VERSION`.
 |[sommelier](https://github.com/PeggyJV/sommelier)|`v3.1.0`|`ghcr.io/ovrclk/cosmos-omnibus:v0.1.4-sommelier-v3.1.0`|[Example](./sommelier)|
 |[stargaze](https://github.com/public-awesome/stargaze)|`v1.1.2`|`ghcr.io/ovrclk/cosmos-omnibus:v0.1.4-stargaze-v1.1.2`|[Example](./stargaze)|
 |[starname](https://github.com/iov-one/starnamed)|`v0.10.18`|`ghcr.io/ovrclk/cosmos-omnibus:v0.1.4-starname-v0.10.18`|[Example](./starname)|
-|[terra](https://github.com/terra-money/core)|`v0.5.18`|`ghcr.io/ovrclk/cosmos-omnibus:v0.1.4-terra-v0.5.18`|[Example](./terra)|
 |[thorchain](https://gitlab.com/thorchain/thornode)|`chaosnet-multichain`|`ghcr.io/ovrclk/cosmos-omnibus:v0.1.4-thorchain-chaosnet-multichain`|[Example](./thorchain)|
 |[umee](https://github.com/umee-network/umee)|`v1.0.1`|`ghcr.io/ovrclk/cosmos-omnibus:v0.1.4-umee-v1.0.1`|[Example](./umee)|
 |[vidulum](https://github.com/vidulum/mainnet)|`v1.0.0`|`ghcr.io/ovrclk/cosmos-omnibus:v0.1.4-vidulum-v1.0.0`|[Example](./vidulum)|
@@ -218,7 +217,7 @@ Note that snapshots will be restored in-process, without downloading the snapsho
 |`SNAPSHOT_QUICKSYNC`|A URL to a Quicksync JSON file describing their snapshots. Also see `SNAPSHOT_PRUNING`| |`https://quicksync.io/terra.json`|
 |`SNAPSHOT_FORMAT`|The format of the snapshot file|`tar.gz`|`tar`|
 |`SNAPSHOT_PATTERN`|The pattern of the file in the `SNAPSHOT_BASE_URL`|`$CHAIN_ID.*$SNAPSHOT_FORMAT`|`foobar.*tar.gz`|
-|`SNAPSHOT_PATH`|The path to the data directory within the archive| |`snapshot/data`|
+|`SNAPSHOT_DATA_PATH`|The path to the data directory within the archive| |`snapshot/data`|
 |`SNAPSHOT_PRUNING`|Type of snapshot to download, e.g. `archive`, `pruned`, `default`.|`pruned`|`archive`|
 |`DOWNLOAD_SNAPSHOT`|Force bootstrapping from snapshot. If unset the node will only restore a snapshot if the `data` contents are missing| |`1`|
 
