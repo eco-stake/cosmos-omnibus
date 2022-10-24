@@ -1,0 +1,56 @@
+---
+version: "2.0"
+
+services:
+  node:
+    image: ghcr.io/ovrclk/cosmos-omnibus:v0.3.7-lava-v0.0.1
+    env:
+      - MONIKER=my-moniker-1
+      - CHAIN_ID=lava
+      - GENESIS_URL=https://github.com/K433QLtr6RA9ExEq/GHFkqmTzpdNLDd6T/raw/main/production/genesis_json/genesis.json
+      - P2P_SEEDS=95b1d35492b8e432fb61a3bbdaa16bce8a4c3e59@prod-pnet-seed-node.lavanet.xyz:26656
+    expose:
+      - port: 26657
+        as: 80
+        to:
+          - global: true
+      - port: 26656
+        to:
+          - global: true
+    # params:
+    #   storage:
+    #     data:
+    #       mount: /root/.lava
+
+profiles:
+  compute:
+    node:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 8Gi
+        storage:
+          size: 100Gi
+          # - size: 100Mi
+          # - name: data
+          #   size: 400Gi
+          #   attributes:
+          #     persistent: true
+  placement:
+    dcloud:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63
+      pricing:
+        node:
+          denom: uakt
+          amount: 1000
+
+deployment:
+  node:
+    dcloud:
+      profile: node
+      count: 1

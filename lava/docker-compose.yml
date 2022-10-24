@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  node_1:
+    image: ghcr.io/ovrclk/cosmos-omnibus:v0.3.7-lava-v0.0.1
+    ports:
+      - '26656:26656'
+      - '26657:26657'
+      - '1317:1317'
+    environment:
+      - MONIKER=node_1
+      - CHAIN_ID=lava
+      - GENESIS_URL=https://github.com/K433QLtr6RA9ExEq/GHFkqmTzpdNLDd6T/raw/main/production/genesis_json/genesis.json
+      - P2P_SEEDS=95b1d35492b8e432fb61a3bbdaa16bce8a4c3e59@prod-pnet-seed-node.lavanet.xyz:26656
+    volumes:
+      - ./node-data:/root/.lava
