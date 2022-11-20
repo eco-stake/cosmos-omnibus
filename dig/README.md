@@ -2,12 +2,12 @@
 
 | | |
 |---|---|
-|Version|`v3.3.1`|
+|Version|`v3.2.2`|
 |Binary|`digd`|
 |Directory|`.dig`|
 |ENV namespace|`DIGD`|
 |Repository|`https://github.com/notional-labs/dig`|
-|Image|`ghcr.io/ovrclk/cosmos-omnibus:v0.3.11-dig-v3.3.1`|
+|Image|`ghcr.io/ovrclk/cosmos-omnibus:v0.3.11-dig-v3.2.2`|
 
 ## Examples
 
