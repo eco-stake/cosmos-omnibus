@@ -11,6 +11,9 @@ services:
         VERSION: v10.0.0-rc1
         REPOSITORY: https://github.com/evmos/evmos
         NAMESPACE: EVMOSD
+        GOLANG_VERSION: 1.19-buster
+        BUILD_METHOD: skip
+        MEV_TENDERMINT_VERSION: v0.34.22-mev.9
     ports:
       - '26656:26656'
       - '26657:26657'
