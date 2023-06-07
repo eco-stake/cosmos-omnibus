@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   node:
-    image: ghcr.io/akash-network/cosmos-omnibus:v0.3.34-stride-v9.0.1
+    image: ghcr.io/akash-network/cosmos-omnibus:v0.3.34-stride-3aeb075f36cb12711201a7f17e8b8d856bd99a01
     env:
       - MONIKER=my-moniker-1
       - CHAIN_JSON=https://raw.githubusercontent.com/cosmos/chain-registry/master/stride/chain.json
