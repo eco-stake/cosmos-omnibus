@@ -7,10 +7,11 @@ services:
       args:
         PROJECT: teritori
         PROJECT_BIN: teritorid
-        VERSION: v1.3.1
+        VERSION: v1.4.0
         REPOSITORY: https://github.com/TERITORI/teritori-chain
         NAMESPACE: TERITORID
         PROJECT_DIR: .teritorid
+        GOLANG_VERSION: 1.20-buster
     ports:
       - '26656:26656'
       - '26657:26657'
