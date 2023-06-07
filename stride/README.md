@@ -2,12 +2,12 @@
 
 | | |
 |---|---|
-|Version|`3aeb075f36cb12711201a7f17e8b8d856bd99a01`|
+|Version|`17fa2fd7802005a7af09e6d2d0f5126b4bf1e10f`|
 |Binary|`strided`|
 |Directory|`.stride`|
 |ENV namespace|`STRIDED`|
 |Repository|`https://github.com/Stride-Labs/stride`|
-|Image|`ghcr.io/akash-network/cosmos-omnibus:v0.3.34-stride-3aeb075f36cb12711201a7f17e8b8d856bd99a01`|
+|Image|`ghcr.io/akash-network/cosmos-omnibus:v0.3.34-stride-17fa2fd7802005a7af09e6d2d0f5126b4bf1e10f`|
 
 ## Examples
 
