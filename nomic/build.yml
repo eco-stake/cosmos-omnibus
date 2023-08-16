@@ -9,13 +9,11 @@ services:
         VERSION: v6.0.0
         REPOSITORY: https://github.com/nomic-io/nomic
         NAMESPACE: TM
-        PROJECT_DIR: .nomic-stakenet-3
         BASE_IMAGE: rustlang/rust:nightly
         INSTALL_PACKAGES: build-essential libssl-dev pkg-config clang
         BUILD_CMD: cargo install --locked --path .
         BUILD_PATH: /usr/local/cargo/bin
         PROJECT_DIR: .nomic-stakenet-3/tendermint
-        CONFIG_DIR: config
     ports:
       - '26656:26656'
       - '26657:26657'
