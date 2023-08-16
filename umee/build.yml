@@ -8,9 +8,9 @@ services:
         PROJECT: umee
         PROJECT_BIN: umeed
         PROJECT_DIR: .umee
-        VERSION: v1.0.1
+        VERSION: v3.1.0
         REPOSITORY: https://github.com/umee-network/umee
-        NAMESPACE: UMEE
+        NAMESPACE: UMEED
     ports:
       - '26656:26656'
       - '26657:26657'
@@ -20,7 +20,6 @@ services:
       - CHAIN_JSON=https://raw.githubusercontent.com/cosmos/chain-registry/master/umee/chain.json
       - P2P_POLKACHU=1
       - STATESYNC_POLKACHU=1
-      # - SNAPSHOT_POLKACHU=1
     env_file:
       - ../.env
     volumes:

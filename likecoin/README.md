@@ -2,12 +2,12 @@
 
 | | |
 |---|---|
-|Version|`v3.0.0`|
+|Version|`v4.0.1`|
 |Binary|`liked`|
 |Directory|`.liked`|
 |ENV namespace|`LIKED`|
 |Repository|`https://github.com/likecoin/likecoin-chain`|
-|Image|`ghcr.io/ovrclk/cosmos-omnibus:v0.2.8-likecoin-v3.0.0`|
+|Image|`ghcr.io/akash-network/cosmos-omnibus:v0.3.44-likecoin-v4.0.1`|
 
 ## Examples
 

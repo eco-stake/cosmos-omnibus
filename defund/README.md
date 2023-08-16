@@ -2,12 +2,12 @@
 
 | | |
 |---|---|
-|Version|`v0.0.2`|
+|Version|`v0.1.0-alpha`|
 |Binary|`defundd`|
 |Directory|`.defund`|
 |ENV namespace|`DEFUNDD`|
 |Repository|`https://github.com/defund-labs/defund`|
-|Image|`ghcr.io/ovrclk/cosmos-omnibus:v0.2.8-defund-v0.0.2`|
+|Image|`ghcr.io/akash-network/cosmos-omnibus:v0.3.44-defund-v0.1.0-alpha`|
 
 ## Examples
 

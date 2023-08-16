@@ -8,10 +8,9 @@ services:
         PROJECT: seinetwork
         PROJECT_BIN: seid
         PROJECT_DIR: .sei
-        VERSION: 1.0.7beta-postfix
+        VERSION: 1.2.2beta-postfix
         REPOSITORY: https://github.com/sei-protocol/sei-chain
         NAMESPACE: SEID
-        GOLANG_VERSION: 1.18-buster
     ports:
       - '26656:26656'
       - '26657:26657'

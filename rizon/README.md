@@ -2,12 +2,12 @@
 
 | | |
 |---|---|
-|Version|`v0.2.8`|
+|Version|`v0.4.1`|
 |Binary|`rizond`|
 |Directory|`.rizon`|
 |ENV namespace|`RIZON`|
 |Repository|`https://github.com/rizon-world/rizon`|
-|Image|`ghcr.io/ovrclk/cosmos-omnibus:v0.2.8-rizon-v0.2.8`|
+|Image|`ghcr.io/akash-network/cosmos-omnibus:v0.3.44-rizon-v0.4.1`|
 
 ## Examples
 

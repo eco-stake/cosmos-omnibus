@@ -7,7 +7,7 @@
 |Directory|`.mantleNode`|
 |ENV namespace|`MANTLENODE`|
 |Repository|`https://github.com/AssetMantle/node`|
-|Image|`ghcr.io/ovrclk/cosmos-omnibus:v0.2.8-assetmantle-v0.3.0`|
+|Image|`ghcr.io/akash-network/cosmos-omnibus:v0.3.44-assetmantle-v0.3.0`|
 
 ## Examples
 
@@ -31,5 +31,4 @@ Note you should choose between statesync and snapshot bootstrapping, snapshot wi
 |Variable|Value|
 |---|---|
 |`P2P_POLKACHU`|`1`|
-|`SNAPSHOT_POLKACHU`|`1`|
 |`STATESYNC_POLKACHU`|`1`|

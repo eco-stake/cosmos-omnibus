@@ -2,12 +2,12 @@
 
 | | |
 |---|---|
-|Version|`v10.0.0`|
+|Version|`v16.1.0`|
 |Binary|`osmosisd`|
 |Directory|`.osmosisd`|
 |ENV namespace|`OSMOSISD`|
 |Repository|`https://github.com/omosis-labs/osmosis`|
-|Image|`ghcr.io/ovrclk/cosmos-omnibus:v0.2.8-osmosis-v10.0.0`|
+|Image|`ghcr.io/akash-network/cosmos-omnibus:v0.3.44-osmosis-v16.1.0`|
 
 ## Examples
 
@@ -31,7 +31,6 @@ Note you should choose between statesync and snapshot bootstrapping, snapshot wi
 |Variable|Value|
 |---|---|
 |`P2P_POLKACHU`|`1`|
-|`SNAPSHOT_POLKACHU`|`1`|
 |`STATESYNC_POLKACHU`|`1`|
 
 ## ChainLayer Quicksync

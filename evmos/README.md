@@ -2,12 +2,12 @@
 
 | | |
 |---|---|
-|Version|`v6.0.3`|
+|Version|`v13.0.2`|
 |Binary|`evmosd`|
 |Directory|`.evmosd`|
 |ENV namespace|`EVMOSD`|
-|Repository|`https://github.com/tharsis/evmos`|
-|Image|`ghcr.io/ovrclk/cosmos-omnibus:v0.2.8-evmos-v6.0.3`|
+|Repository|`https://github.com/evmos/evmos`|
+|Image|`ghcr.io/akash-network/cosmos-omnibus:v0.3.44-evmos-v13.0.2`|
 
 ## Examples
 
@@ -31,5 +31,4 @@ Note you should choose between statesync and snapshot bootstrapping, snapshot wi
 |Variable|Value|
 |---|---|
 |`P2P_POLKACHU`|`1`|
-|`SNAPSHOT_POLKACHU`|`1`|
 |`STATESYNC_POLKACHU`|`1`|

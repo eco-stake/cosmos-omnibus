@@ -1,13 +1,13 @@
-# Cerberus
+# Crescent
 
 | | |
 |---|---|
-|Version|`v1.0.1`|
-|Binary|`cerberusd`|
-|Directory|`.cerberus`|
-|ENV namespace|`CERBERUSD`|
-|Repository|`https://github.com/cerberus-zone/cerberus.git`|
-|Image|`ghcr.io/ovrclk/cosmos-omnibus:v0.2.8-cerberus-v1.0.1`|
+|Version|`v4.2.0`|
+|Binary|`crescentd`|
+|Directory|`.crescent`|
+|ENV namespace|`CRESCENTD`|
+|Repository|`https://github.com/crescent-network/crescent`|
+|Image|`ghcr.io/akash-network/cosmos-omnibus:v0.3.44-crescent-v4.2.0`|
 
 ## Examples
 
@@ -16,11 +16,11 @@
 
 ## Chain information
 
-The [Cosmos Chain Registry](https://github.com/cosmos/chain-registry) publishes up to date chain info for Cerberus
+The [Cosmos Chain Registry](https://github.com/cosmos/chain-registry) publishes up to date chain info for Crescent.
 
 |Variable|Value|
 |---|---|
-|`CHAIN_JSON`|`https://raw.githubusercontent.com/cosmos/chain-registry/master/cerberus/chain.json`|
+|`CHAIN_JSON`|`https://raw.githubusercontent.com/cosmos/chain-registry/master/crescent/chain.json`|
 
 ## Polkachu Chain Services
 
@@ -31,5 +31,4 @@ Note you should choose between statesync and snapshot bootstrapping, snapshot wi
 |Variable|Value|
 |---|---|
 |`P2P_POLKACHU`|`1`|
-|`SNAPSHOT_POLKACHU`|`1`|
 |`STATESYNC_POLKACHU`|`1`|

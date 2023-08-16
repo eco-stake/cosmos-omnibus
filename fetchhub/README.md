@@ -2,12 +2,12 @@
 
 | | |
 |---|---|
-|Version|`v0.10.4`|
+|Version|`v0.10.6`|
 |Binary|`fetchd`|
 |Directory|`.fetchd`|
 |ENV namespace|`FETCH`|
 |Repository|`https://github.com/fetchai/fetchd`|
-|Image|`ghcr.io/ovrclk/cosmos-omnibus:v0.2.8-fetchhub-v0.10.4`|
+|Image|`ghcr.io/akash-network/cosmos-omnibus:v0.3.44-fetchhub-v0.10.6`|
 
 ## Examples
 
@@ -31,5 +31,4 @@ Note you should choose between statesync and snapshot bootstrapping, snapshot wi
 |Variable|Value|
 |---|---|
 |`P2P_POLKACHU`|`1`|
-|`SNAPSHOT_POLKACHU`|`1`|
 |`STATESYNC_POLKACHU`|`1`|

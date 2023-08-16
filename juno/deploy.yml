@@ -3,15 +3,18 @@ version: "2.0"
 
 services:
   node:
-    image: ghcr.io/ovrclk/cosmos-omnibus:v0.2.8-juno-v9.0.0
+    image: ghcr.io/akash-network/cosmos-omnibus:v0.3.44-juno-v16.0.0
     env:
       - MONIKER=node_1
       - CHAIN_JSON=https://raw.githubusercontent.com/cosmos/chain-registry/master/juno/chain.json
       - GENESIS_URL=https://download.dimi.sh/juno-phoenix2-genesis.tar.gz
       - GENESIS_FILENAME=juno-phoenix2-genesis.json
       - P2P_POLKACHU=1
-      # - STATESYNC_POLKACHU=1
-      - SNAPSHOT_POLKACHU=1
+      - STATESYNC_POLKACHU=1
+      # These IAVL settings are required starting juno v11.0.0
+      # https://github.com/CosmosContracts/juno/releases/tag/v11.0.0
+      - JUNOD_IAVL_CACHE_SIZE=781250
+      - JUNOD_IAVL_DISABLE_FASTNODE=false
     expose:
       - port: 26657
         as: 80
@@ -20,6 +23,10 @@ services:
       - port: 26656
         to:
           - global: true
+    # params:
+    #   storage:
+    #     data:
+    #       mount: /root/.juno
 
 profiles:
   compute:
@@ -31,6 +38,11 @@ profiles:
           size: 8Gi
         storage:
           size: 100Gi
+          # - size: 100Mi
+          # - name: data
+          #   size: 400Gi
+          #   attributes:
+          #     persistent: true
   placement:
     dcloud:
       attributes:

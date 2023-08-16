@@ -8,9 +8,9 @@ services:
         PROJECT: fetchhub
         PROJECT_BIN: fetchd
         PROJECT_DIR: .fetchd
-        VERSION: v0.10.4
+        VERSION: v0.10.6
         REPOSITORY: https://github.com/fetchai/fetchd
-        NAMESPACE: FETCHHUB
+        NAMESPACE: FETCHD
     ports:
       - '26656:26656'
       - '26657:26657'
@@ -20,7 +20,6 @@ services:
       - CHAIN_JSON=https://raw.githubusercontent.com/cosmos/chain-registry/master/fetchhub/chain.json
       - P2P_POLKACHU=1
       - STATESYNC_POLKACHU=1
-      # - SNAPSHOT_POLKACHU=1
     env_file:
       - ../.env
     volumes:

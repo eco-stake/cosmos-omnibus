@@ -8,9 +8,9 @@ services:
         PROJECT: starname
         PROJECT_BIN: starnamed
         PROJECT_DIR: .starnamed
-        VERSION: v0.10.18
+        VERSION: v0.11.5
         REPOSITORY: https://github.com/iov-one/starnamed
-        NAMESPACE: STARNAME
+        NAMESPACE: STARNAMED
     ports:
       - '26656:26656'
       - '26657:26657'

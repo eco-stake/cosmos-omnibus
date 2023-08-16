@@ -2,12 +2,12 @@
 
 | | |
 |---|---|
-|Version|`v0.16.3`|
+|Version|`v0.22.7`|
 |Binary|`akash`|
 |Directory|`.akash`|
 |ENV namespace|`AKASH`|
-|Repository|`https://github.com/ovrclk/akash`|
-|Image|`ghcr.io/ovrclk/cosmos-omnibus:v0.2.8-akash-v0.16.3`|
+|Repository|`https://github.com/akash-network/node`|
+|Image|`ghcr.io/akash-network/cosmos-omnibus:v0.3.44-akash-v0.22.7`|
 
 ## Examples
 
@@ -16,11 +16,11 @@
 
 ## Chain information
 
-Akash provide up to date chain information in their [ovrclk/net](https://github.com/ovrclk/net) repository.
+Akash provide up to date chain information in their [akash-network/net](https://github.com/akash-network/net) repository.
 
 |Variable|Value|
 |---|---|
-|`CHAIN_JSON`|`https://raw.githubusercontent.com/ovrclk/net/master/mainnet/meta.json`|
+|`CHAIN_JSON`|`https://raw.githubusercontent.com/akash-network/net/main/mainnet/meta.json`|
 
 ## Suggested configuration
 
@@ -40,13 +40,4 @@ Note you should choose between statesync and snapshot bootstrapping, snapshot wi
 |Variable|Value|
 |---|---|
 |`P2P_POLKACHU`|`1`|
-|`SNAPSHOT_POLKACHU`|`1`|
 |`STATESYNC_POLKACHU`|`1`|
-
-## Akash Snapshots
-
-Akash provide daily snapshots of the Akash blockchain taken at midnight UTC.
-
-|Variable|Value|
-|---|---|
-|`SNAPSHOT_JSON`|`https://cosmos-snapshots.s3.filebase.com/akash/pruned/snapshot.json`|

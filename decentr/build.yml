@@ -8,9 +8,9 @@ services:
         PROJECT: decentr
         PROJECT_BIN: decentrd
         PROJECT_DIR: .decentr
-        VERSION: v1.5.7
+        VERSION: v1.6.2
         REPOSITORY: https://github.com/Decentr-net/decentr
-        NAMESPACE: DECENTR
+        NAMESPACE: DECENTRD
     ports:
       - '26656:26656'
       - '26657:26657'

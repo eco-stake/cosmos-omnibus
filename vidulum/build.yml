@@ -8,9 +8,9 @@ services:
         PROJECT: vidulum
         PROJECT_BIN: vidulumd
         PROJECT_DIR: .vidulum
-        VERSION: v1.0.0
+        VERSION: v1.2.0
         REPOSITORY: https://github.com/vidulum/mainnet
-        NAMESPACE: vidulum
+        NAMESPACE: VIDULUMD
     ports:
       - '26656:26656'
       - '26657:26657'

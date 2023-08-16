@@ -2,12 +2,12 @@
 
 | | |
 |---|---|
-|Version|`v1.0.1`|
+|Version|`v3.1.0`|
 |Binary|`umeed`|
 |Directory|`.umee`|
 |ENV namespace|`umee`|
 |Repository|`https://github.com/crypto-org-chain/umee`|
-|Image|`ghcr.io/ovrclk/cosmos-omnibus:v0.2.8-umee-v1.0.1`|
+|Image|`ghcr.io/akash-network/cosmos-omnibus:v0.3.44-umee-v3.1.0`|
 
 ## Examples
 
@@ -31,5 +31,4 @@ Note you should choose between statesync and snapshot bootstrapping, snapshot wi
 |Variable|Value|
 |---|---|
 |`P2P_POLKACHU`|`1`|
-|`SNAPSHOT_POLKACHU`|`1`|
 |`STATESYNC_POLKACHU`|`1`|

@@ -1,6 +1,6 @@
 ARG BUILD_IMAGE=default
 ARG BUILD_METHOD=source
-ARG GOLANG_VERSION=1.17-buster
+ARG GOLANG_VERSION=1.18-buster
 ARG BASE_IMAGE=golang:${GOLANG_VERSION}
 
 #
@@ -13,7 +13,7 @@ ARG PROJECT_BIN=$PROJECT
 ARG INSTALL_PACKAGES
 
 RUN apt-get update && \
-  apt-get install --no-install-recommends --assume-yes curl unzip ${INSTALL_PACKAGES} && \
+  apt-get install --no-install-recommends --assume-yes curl unzip pv ${INSTALL_PACKAGES} && \
   apt-get clean
 
 #
@@ -33,9 +33,10 @@ FROM build_base AS build_source
 ARG VERSION
 ARG REPOSITORY
 ARG BUILD_CMD="make install"
+ARG BUILD_DIR=/data
 
 RUN git clone $REPOSITORY /data
-WORKDIR /data
+WORKDIR $BUILD_DIR
 RUN git checkout $VERSION
 
 #
@@ -46,6 +47,18 @@ FROM build_source AS build_starport
 ARG BUILD_CMD="starport chain build"
 
 RUN curl https://get.starport.network/starport! | bash
+
+#
+# Optional build environment for Skip support
+#
+FROM build_source AS build_skip
+
+# Get MEV_TENDERMINT_VERSION from
+# https://raw.githubusercontent.com/skip-mev/config/main/$CHAIN_ID/mev-tendermint_version.txt
+ARG MEV_TENDERMINT_VERSION
+
+RUN go mod edit -replace github.com/tendermint/tendermint=github.com/skip-mev/mev-tendermint@$MEV_TENDERMINT_VERSION && \
+    go mod tidy
 
 #
 # Final build environment
@@ -68,9 +81,10 @@ FROM debian:buster AS default
 
 ARG PROJECT
 ARG PROJECT_BIN=$PROJECT
+ARG BUILD_DIR=/data
 
 COPY --from=build /bin/$PROJECT_BIN /bin/$PROJECT_BIN
-COPY --from=build /data/deps/ /
+COPY --from=build $BUILD_DIR/deps/ /
 
 #
 # Optional image to install from binary
@@ -83,15 +97,64 @@ RUN curl -Lo /bin/$PROJECT_BIN $BINARY_URL
 RUN chmod +x /bin/$PROJECT_BIN
 
 #
+# Custom image for injective
+#
+FROM debian:buster AS injective
+
+ARG VERSION
+
+RUN apt-get update && \
+  apt-get install --no-install-recommends --assume-yes ca-certificates curl unzip && \
+  apt-get clean
+
+WORKDIR /data
+RUN curl -Lo /data/release.zip https://github.com/InjectiveLabs/injective-chain-releases/releases/download/$VERSION/linux-amd64.zip
+RUN unzip -oj /data/release.zip
+RUN mv injectived /bin
+RUN mv libwasmvm.x86_64.so /usr/lib
+RUN chmod +x /bin/injectived
+
+#
+# ZSTD build
+#
+FROM gcc:12 AS zstd_build
+
+ARG ZTSD_SOURCE_URL="https://github.com/facebook/zstd/releases/download/v1.5.5/zstd-1.5.5.tar.gz"
+
+ENV VIRTUAL_ENV=/opt/venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+RUN apt-get update && \
+      apt-get install --no-install-recommends --assume-yes meson ninja-build && \
+      apt-get clean && \
+    mkdir -p /tmp/zstd && \
+    cd /tmp/zstd && \
+    curl -Lo zstd.source $ZTSD_SOURCE_URL && \
+    file zstd.source | grep -q 'gzip compressed data' && mv zstd.source zstd.source.gz && gzip -d zstd.source.gz && \
+    file zstd.source | grep -q 'tar archive' && mv zstd.source zstd.source.tar && tar -xf zstd.source.tar --strip-components=1 && rm zstd.source.tar && \
+    LDFLAGS=-static \
+    meson setup \
+      -Dbin_programs=true \
+      -Dstatic_runtime=true \
+      -Ddefault_library=static \
+      -Dzlib=disabled -Dlzma=disabled -Dlz4=disabled \
+      build/meson builddir-st && \
+    ninja -C builddir-st && \
+    ninja -C builddir-st install && \
+    /usr/local/bin/zstd -v
+
+#
 # Final Omnibus image
 # Note optional `BUILD_IMAGE` argument controls the base image
 #
 FROM ${BUILD_IMAGE} AS omnibus
-LABEL org.opencontainers.image.source https://github.com/ovrclk/cosmos-omnibus
+LABEL org.opencontainers.image.source https://github.com/akash-network/cosmos-omnibus
 
 RUN apt-get update && \
-  apt-get install --no-install-recommends --assume-yes ca-certificates curl wget file unzip liblz4-tool gnupg2 jq && \
+  apt-get install --no-install-recommends --assume-yes ca-certificates curl wget file unzip liblz4-tool gnupg2 jq pv && \
   apt-get clean
+
+COPY --from=zstd_build /usr/local/bin/zstd /bin/
 
 ARG PROJECT
 ARG PROJECT_BIN
@@ -126,9 +189,14 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
   && unzip awscliv2.zip -d /usr/src && rm -f awscliv2.zip \
   && /usr/src/aws/install --bin-dir /usr/bin
 
+# Install Storj DCS uplink client
+RUN curl -L https://github.com/storj/storj/releases/latest/download/uplink_linux_amd64.zip -o uplink_linux_amd64.zip && \
+  unzip -o uplink_linux_amd64.zip && \
+  install uplink /usr/bin/uplink && \
+  rm -f uplink uplink_linux_amd64.zip
+
 # Copy scripts
 COPY run.sh snapshot.sh /usr/bin/
 RUN chmod +x /usr/bin/run.sh /usr/bin/snapshot.sh
 ENTRYPOINT ["run.sh"]
-
-CMD $START_CMD
+CMD []

@@ -1,15 +1,22 @@
 name: test
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build_matrix:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - id: set-matrix
-        run: echo "::set-output name=matrix::$(find * -type f -name build.yml -not -path "terra*" | xargs dirname | sort | uniq | jq --raw-input . | jq -c --slurp .)"
+        run: echo "matrix=$(find * -type f -name build.yml -not -path "terra*" | xargs dirname | sort | uniq | jq --raw-input . | jq -c --slurp .)" >> $GITHUB_OUTPUT
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
 
@@ -18,13 +25,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      max-parallel: 15
+      max-parallel: 12
       matrix:
         project: ${{ fromJson(needs.build_matrix.outputs.matrix) }}
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: docker/setup-buildx-action@v1
+      - uses: actions/checkout@v3
+      - uses: docker/setup-buildx-action@v2
         id: buildx
         with:
           install: true

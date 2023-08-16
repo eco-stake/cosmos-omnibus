@@ -8,10 +8,10 @@ services:
         PROJECT: lum
         PROJECT_BIN: lumd
         PROJECT_DIR: .lumd
-        VERSION: v1.0.5
+        VERSION: v1.5.1
         REPOSITORY: https://github.com/lum-network/chain
-        NAMESPACE: LUMNETWORK
-        GOLANG_VERSION: 1.16-buster
+        NAMESPACE: LUMD
+        GOLANG_VERSION: 1.19.7-buster
     ports:
       - '26656:26656'
       - '26657:26657'
@@ -23,4 +23,4 @@ services:
     env_file:
       - ../.env
     volumes:
-      - ./node-data:/root/.lum
+      - ./node-data:/root/.lumd
