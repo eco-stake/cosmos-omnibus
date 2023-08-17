@@ -9,7 +9,7 @@ services:
         VERSION: v6.0.0
         REPOSITORY: https://github.com/nomic-io/nomic
         NAMESPACE: TM
-        BASE_IMAGE: rustlang/rust:nightly
+        BASE_IMAGE: rustlang/rust:nightly-buster
         INSTALL_PACKAGES: build-essential libssl-dev pkg-config clang
         BUILD_CMD: cargo install --locked --path .
         BUILD_PATH: /usr/local/cargo/bin
