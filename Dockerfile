@@ -1,7 +1,9 @@
+ARG DEBIAN_VERSION=buster
 ARG BUILD_IMAGE=default
 ARG BUILD_METHOD=source
 ARG GOLANG_VERSION=1.18-buster
 ARG BASE_IMAGE=golang:${GOLANG_VERSION}
+ARG DEBIAN_IMAGE=debian:${DEBIAN_VERSION}
 
 #
 # Default build environment for standard Tendermint chains
@@ -77,7 +79,7 @@ RUN mv $BUILD_PATH/$PROJECT_BIN /bin/$PROJECT_BIN
 #
 # Default image
 #
-FROM debian:buster AS default
+FROM ${DEBIAN_IMAGE} AS default
 
 ARG PROJECT
 ARG PROJECT_BIN=$PROJECT
@@ -94,6 +96,21 @@ FROM build_base AS binary
 ARG BINARY_URL
 
 RUN curl -Lo /bin/$PROJECT_BIN $BINARY_URL
+RUN chmod +x /bin/$PROJECT_BIN
+
+#
+# Optional image to install from binary zip
+#
+FROM build_base AS binary_zip
+
+ARG BINARY_URL
+ARG BINARY_ZIP_PATH
+
+RUN curl -Lo /bin/$PROJECT_BIN.zip $BINARY_URL
+RUN unzip /bin/$PROJECT_BIN.zip -d /bin && rm /bin/$PROJECT_BIN.zip
+RUN if [ -n "$BINARY_ZIP_PATH" ]; then \
+      mv /bin/${BINARY_ZIP_PATH} /bin; \
+    fi
 RUN chmod +x /bin/$PROJECT_BIN
 
 #

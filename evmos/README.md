@@ -2,12 +2,12 @@
 
 | | |
 |---|---|
-|Version|`v13.0.2`|
+|Version|`v14.1.0`|
 |Binary|`evmosd`|
 |Directory|`.evmosd`|
 |ENV namespace|`EVMOSD`|
 |Repository|`https://github.com/evmos/evmos`|
-|Image|`ghcr.io/akash-network/cosmos-omnibus:v0.3.44-evmos-v13.0.2`|
+|Image|`ghcr.io/akash-network/cosmos-omnibus:v0.3.50-evmos-v14.1.0`|
 
 ## Examples
 
