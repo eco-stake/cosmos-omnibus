@@ -6,12 +6,12 @@ services:
       context: ../
       args:
         PROJECT: nomic
-        VERSION: v6.0.5
+        VERSION: v7.0.0
         REPOSITORY: https://github.com/nomic-io/nomic
         NAMESPACE: TM
         BASE_IMAGE: rustlang/rust:nightly-buster
         INSTALL_PACKAGES: build-essential libssl-dev pkg-config clang
-        BUILD_CMD: cargo install --locked --path .
+        BUILD_CMD: cargo install --path . --locked --bin nomic
         BUILD_PATH: /usr/local/cargo/bin
         PROJECT_DIR: .nomic-stakenet-3/tendermint
     ports:
