@@ -107,7 +107,7 @@ jobs:
           - project: nois
             version: v1.0.4
           - project: nomic
-            version: v7.0.0
+            version: v7.0.1
           - project: omniflixhub
             version: v0.12.1
           - project: osmosis
