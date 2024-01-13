@@ -2,12 +2,12 @@
 
 | | |
 |---|---|
-|Version|`v9.1.1`|
+|Version|`v10.2.0`|
 |Binary|`persistenceCore`|
 |Directory|`.persistenceCore`|
 |ENV namespace|`PERSISTENCECORE`|
 |Repository|`https://github.com/persistenceOne/persistenceCore`|
-|Image|`ghcr.io/akash-network/cosmos-omnibus:v0.3.51-persistence-v9.1.1`|
+|Image|`ghcr.io/akash-network/cosmos-omnibus:v0.4.5-persistence-v10.2.0`|
 
 ## Examples
 
