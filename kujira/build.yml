@@ -11,7 +11,7 @@ services:
         VERSION: 0fa65a9157fa873060a1d4345cd1744d9a9a7419
         REPOSITORY: https://github.com/Team-Kujira/core
         NAMESPACE: KUJIRAD
-        GOLANG_VERSION: 1.21-bullseye
+        GOLANG_VERSION: 1.21.3-bullseye
         DEBIAN_VERSION: bullseye
     ports:
       - '26656:26656'
