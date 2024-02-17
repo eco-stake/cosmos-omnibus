@@ -31,7 +31,7 @@ jobs:
           - project: bandchain
             version: v2.5.1
           - project: bitcanna
-            version: v2.0.3
+            version: v3.0.1
           - project: bitsong
             version: v0.14.0
           - project: bostrom
@@ -61,15 +61,17 @@ jobs:
           - project: dig
             version: v3.3.1
           - project: dydx
-            version: v2.0.0
+            version: v3.0.0
+          - project: dymension
+            version: v3.0.0
           - project: emoney
             version: v1.2.0
           - project: empowerchain
             version: v2.0.0
           - project: evmos
-            version: v16.0.1
+            version: v16.0.2
           - project: fetchhub
-            version: v0.10.6
+            version: v0.11.3
           - project: gitopia
             version: v2.1.1
           - project: gravitybridge
@@ -77,13 +79,13 @@ jobs:
           - project: impacthub
             version: v0.18.1
           - project: injective
-            version: v1.12.0-1704530206
+            version: v1.12.1-1705909076
           - project: irisnet
             version: v2.0.1
           - project: jackal
-            version: v3.0.5
+            version: v3.1.2
           - project: juno
-            version: v18.1.0
+            version: v20.0.0
           - project: kava
             version: v0.25.0
           - project: kichain
@@ -105,19 +107,19 @@ jobs:
           - project: neutron
             version: v2.0.1
           - project: nois
-            version: v1.0.4
+            version: v1.0.5
           - project: nomic
             version: v7.0.1
           - project: omniflixhub
-            version: v0.12.1
+            version: v2.1.0
           - project: osmosis
-            version: v21.2.1
+            version: v22.0.0
           - project: panacea
             version: v2.0.5
           - project: passage
             version: v2.3.0
           - project: persistence
-            version: v10.2.0
+            version: v10.3.0
           - project: regen
             version: v5.1.1
           - project: rizon
@@ -135,11 +137,11 @@ jobs:
           - project: stargaze
             version: v12.0.0
           - project: stride
-            version: v16.0.0
+            version: v18.0.0
           - project: starname
             version: v0.11.5
           - project: teritori
-            version: v1.4.0
+            version: v2.0.6
           # - project: terra
           #   version: v0.5.18
           - project: umee
