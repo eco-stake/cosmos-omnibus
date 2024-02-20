@@ -69,6 +69,7 @@ RUN go mod edit -replace github.com/tendermint/tendermint=github.com/skip-mev/me
 FROM build_${BUILD_METHOD} AS build
 
 ARG BUILD_PATH=$GOPATH/bin
+RUN git tag v0.29.13 -d && git tag v0.29.13
 RUN $BUILD_CMD
 
 RUN ldd $BUILD_PATH/$PROJECT_BIN | tr -s '[:blank:]' '\n' | grep '^/' | \
