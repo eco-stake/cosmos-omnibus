@@ -2,12 +2,12 @@
 
 | | |
 |---|---|
-|Version|`v0.29.12`|
+|Version|`fix/v0.29.13-issue`|
 |Binary|`elysd`|
 |Directory|`.elys`|
 |ENV namespace|`ELYSD`|
 |Repository|`https://github.com/elys-network/elys`|
-|Image|`ghcr.io/akash-network/cosmos-omnibus:v0.4.7-elysnetwork-v0.29.12`|
+|Image|`ghcr.io/akash-network/cosmos-omnibus:v0.4.7-elysnetwork-fix/v0.29.13-issue`|
 
 ## Examples
 
