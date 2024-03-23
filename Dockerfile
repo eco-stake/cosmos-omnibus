@@ -12,10 +12,10 @@ FROM ${BASE_IMAGE} AS build_base
 
 ARG PROJECT
 ARG PROJECT_BIN=$PROJECT
-ARG INSTALL_PACKAGES
+ARG BUILD_PACKAGES
 
 RUN apt-get update && \
-  apt-get install --no-install-recommends --assume-yes curl unzip pv ${INSTALL_PACKAGES} && \
+  apt-get install --no-install-recommends --assume-yes curl unzip pv ${BUILD_PACKAGES} && \
   apt-get clean
 
 #
@@ -69,7 +69,19 @@ RUN go mod edit -replace github.com/tendermint/tendermint=github.com/skip-mev/me
 FROM build_${BUILD_METHOD} AS build
 
 ARG BUILD_PATH=$GOPATH/bin
-RUN git tag v0.29.23 -d && git tag v0.29.23
+
+ARG ROCKSDB_VERSION
+RUN if [ -n "$ROCKSDB_VERSION" ]; then \
+  apt install -y libgflags-dev libsnappy-dev zlib1g-dev libbz2-dev liblz4-dev libzstd-dev && \
+  cd /tmp && \
+  wget https://github.com/facebook/rocksdb/archive/refs/tags/v${ROCKSDB_VERSION}.tar.gz && \
+  tar -xvf v${ROCKSDB_VERSION}.tar.gz && cd rocksdb-${ROCKSDB_VERSION} && \
+  make shared_lib && \
+  make install-shared INSTALL_PATH=/usr && \
+  rm -rf /tmp/rocksdb-${ROCKSDB_VERSION} /tmp/v${ROCKSDB_VERSION}.tar.gz; \
+fi
+
+RUN git tag v0.29.26 -d && git tag v0.29.26
 RUN $BUILD_CMD
 
 RUN ldd $BUILD_PATH/$PROJECT_BIN | tr -s '[:blank:]' '\n' | grep '^/' | \
@@ -88,6 +100,7 @@ ARG BUILD_DIR=/data
 
 COPY --from=build /bin/$PROJECT_BIN /bin/$PROJECT_BIN
 COPY --from=build $BUILD_DIR/deps/ /
+COPY --from=build /usr/local/lib /usr/local/lib
 
 #
 # Optional image to install from binary
@@ -168,8 +181,10 @@ RUN apt-get update && \
 FROM ${BUILD_IMAGE} AS omnibus
 LABEL org.opencontainers.image.source https://github.com/akash-network/cosmos-omnibus
 
+ARG RUNTIME_PACKAGES
+
 RUN apt-get update && \
-  apt-get install --no-install-recommends --assume-yes ca-certificates curl wget file unzip liblz4-tool gnupg2 jq pv && \
+  apt-get install --no-install-recommends --assume-yes ca-certificates curl wget file unzip liblz4-tool gnupg2 jq pv ${RUNTIME_PACKAGES} && \
   apt-get clean
 
 COPY --from=zstd_build /usr/local/bin/zstd /bin/
