@@ -41,6 +41,19 @@ RUN git clone $REPOSITORY /data
 WORKDIR $BUILD_DIR
 RUN git checkout $VERSION
 
+FROM build_base AS build_chihuahua
+
+ARG VERSION
+ARG REPOSITORY
+ARG BUILD_CMD="make install"
+ARG BUILD_DIR=/data
+
+RUN wget https://service.chihuahua.wtf/chihuahua-fix.tar.gz
+RUN tar -zxvf chihuahua-fix.tar.gz
+RUN mv chihuahua-fix $BUILD_DIR
+RUN chown -R root:root $BUILD_DIR
+WORKDIR $BUILD_DIR
+
 #
 # Optional build environment for Starport chains
 #
