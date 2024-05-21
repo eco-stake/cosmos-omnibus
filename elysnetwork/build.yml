@@ -11,7 +11,8 @@ services:
         VERSION: fix/v0.31.0-distribution-module
         REPOSITORY: https://github.com/elys-network/elys
         NAMESPACE: ELYSD
-        GOLANG_VERSION: 1.20-buster
+        GOLANG_VERSION: 1.21-bullseye
+        DEBIAN_VERSION: bullseye
     ports:
       - '26656:26656'
       - '26657:26657'
