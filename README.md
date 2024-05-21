@@ -25,12 +25,12 @@ Omnibus has a generic base image which can download the required binary at runti
 
 This generic image provides the Omnibus scripts and configuration helpers, and nothing else. Set the `BINARY_URL` environment variable to a `.zip`, `.tar` or `.tar.gz` URL, and configure `PROJECT`, `PROJECT_DIR` and `PROJECT_BIN`. Alternatively provide a [Chain Registry](https://github.com/cosmos/chain-registry) `CHAIN_JSON` to configure everything automatically (where data is available).
 
-Image URL: `ghcr.io/akash-network/cosmos-omnibus:v0.4.7-generic`
+Image URL: `ghcr.io/akash-network/cosmos-omnibus:v0.4.16-generic`
 
 ```yaml
 services:
   node:
-    image: ghcr.io/akash-network/cosmos-omnibus:v0.4.7-generic
+    image: ghcr.io/akash-network/cosmos-omnibus:v0.4.16-generic
     env:
       - MONIKER=my-moniker-1
       - CHAIN_JSON=https://raw.githubusercontent.com/akash-network/net/main/edgenet/meta.json
