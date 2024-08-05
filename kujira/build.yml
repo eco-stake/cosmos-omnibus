@@ -8,7 +8,7 @@ services:
         PROJECT: kujira
         PROJECT_BIN: kujirad
         PROJECT_DIR: .kujira
-        VERSION: v2.0.1-rc1
+        VERSION: 67f00bb78689867b4c68373526a7ed6975c3cda4
         REPOSITORY: https://github.com/Team-Kujira/core
         NAMESPACE: KUJIRAD
         GOLANG_VERSION: 1.21.8-bullseye
