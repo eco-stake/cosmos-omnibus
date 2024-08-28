@@ -15,6 +15,7 @@ services:
       - CHAIN_JSON=https://raw.githubusercontent.com/akash-network/net/main/mainnet/meta.json
       - P2P_POLKACHU=1
       - STATESYNC_POLKACHU=1
+      - DEBIAN_VERSION=bookworm
     env_file:
       - ../.env
     volumes:
