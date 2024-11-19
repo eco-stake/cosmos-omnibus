@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  node:
+    build:
+      context: ../
+      args:
+        PROJECT: sei
+        PROJECT_BIN: seid
+        PROJECT_DIR: .sei
+        VERSION: v5.7.5
+        REPOSITORY: https://github.com/sei-protocol/sei-chain
+        GOLANG_VERSION: 1.22-bullseye
+        DEBIAN_VERSION: bullseye
+    ports:
+      - '26656:26656'
+      - '26657:26657'
+      - '1317:1317'
+    volumes:
+      - ./node-data:/root/.sei
