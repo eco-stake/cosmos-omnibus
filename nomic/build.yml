@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  node_1:
+  node:
     build:
       context: ../
       args:
@@ -24,8 +24,6 @@ services:
       - CHAIN_ID=nomic-stakenet-3
       - DOWNLOAD_GENESIS=0
       - INIT_CONFIG=0
-    env_file:
-      - ../.env
     volumes:
       - ./node-data:/root/.nomic-stakenet-3
       # - ./orga-wallet:/root/.orga-wallet
