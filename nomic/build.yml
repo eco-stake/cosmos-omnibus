@@ -6,7 +6,7 @@ services:
       context: ../
       args:
         PROJECT: nomic
-        VERSION: v10.0.2
+        VERSION: v11.0.0
         REPOSITORY: https://github.com/nomic-io/nomic
         NAMESPACE: TM
         BASE_IMAGE: rustlang/rust:nightly-buster
