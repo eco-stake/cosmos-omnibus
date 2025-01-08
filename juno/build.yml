@@ -1,5 +1,3 @@
-version: '3.4'
-
 services:
   node:
     build:
@@ -8,9 +6,9 @@ services:
         PROJECT: juno
         PROJECT_BIN: junod
         PROJECT_DIR: .juno
-        VERSION: v25.0.0
+        VERSION: v26.0.0
         REPOSITORY: https://github.com/CosmosContracts/juno
-        GOLANG_VERSION: 1.22-bullseye
+        GOLANG_VERSION: 1.22
         DEBIAN_VERSION: bullseye
     ports:
       - '26656:26656'

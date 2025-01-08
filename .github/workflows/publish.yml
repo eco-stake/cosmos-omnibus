@@ -3,57 +3,72 @@ on:
   push:
     tags:
       - v*
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Omnibus version tag to use for images'
+        required: true
+      projects:
+        description: 'Comma separated list of projects to test'
+        required: false
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
+  build_matrix:
+    runs-on: ubuntu-latest
+    env:
+      PROJECTS: ${{ github.event.inputs.projects }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: set-matrix
+        run: |
+          if [ -n "${{ env.PROJECTS }}" ]; then
+            echo "matrix=$(echo "${{ env.PROJECTS }}" | sed 's/, */,/g' | tr ',' '\n' | jq --raw-input . | jq -c --slurp .)" >> $GITHUB_OUTPUT
+          else
+            echo "matrix=$(find * -type f -name build.yml | xargs dirname | sort | uniq | jq --raw-input . | jq -c --slurp .)" >> $GITHUB_OUTPUT
+          fi
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
   build:
+    needs: build_matrix
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      max-parallel: 12
+      max-parallel: 10
       matrix:
-        include:
-          - project: nomic
-            version: v11.0.0
+        project: ${{ fromJson(needs.build_matrix.outputs.matrix) }}
+    env:
+      TAG: ${{ github.event.inputs.tag }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: docker/setup-buildx-action@v3
-        id: buildx
-        with:
-          install: true
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Login to DockerHub
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Get image tag
+        id: get-image-tag
         run: |
-          touch .env # Create dummy env file
-          cd ${{matrix.project}}
-          docker buildx bake -f build.yml --set node.tags=ghcr.io/${{ github.repository }}:${GITHUB_REF#refs/tags/}-${{matrix.project}}-${{matrix.version}}${{matrix.tag_suffix}} --push
-  build_generic:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      max-parallel: 15
-    steps:
-      - uses: actions/checkout@v4
-      - uses: docker/setup-buildx-action@v3
-        id: buildx
+          VERSION=$(yq '.services.node.build.args.VERSION // ""' ./${{matrix.project}}/build.yml)
+          if [ -n "$VERSION" ]; then
+            echo "image-tag=${{ env.TAG || github.ref_name }}-${{matrix.project}}-$VERSION" >> $GITHUB_OUTPUT
+          else
+            echo "image-tag=${{ env.TAG || github.ref_name }}-${{matrix.project}}" >> $GITHUB_OUTPUT
+          fi
+      - name: Build and push
+        uses: docker/bake-action@v5
         with:
-          install: true
-      - name: Login to DockerHub
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build
-        run: |
-          touch .env # Create dummy env file
-          cd generic
-          docker buildx bake -f build.yml --set node.tags=ghcr.io/${{ github.repository }}:${GITHUB_REF#refs/tags/}-generic --push
+          workdir: ${{ matrix.project}}
+          files: build.yml
+          allow: fs.read=..
+          set: |
+            node.tags=ghcr.io/${{ github.repository }}:${{ steps.get-image-tag.outputs.image-tag }}
+            node.platform=linux/amd64
+          push: true
