@@ -9,10 +9,10 @@ services:
         VERSION: v11.0.0
         REPOSITORY: https://github.com/nomic-io/nomic
         NAMESPACE: TM
-        BASE_IMAGE: rustlang/rust:nightly-buster
-        INSTALL_PACKAGES: build-essential libssl-dev pkg-config clang
+        BASE_IMAGE: rustlang/rust:nightly-bookworm
+        BUILD_PACKAGES: build-essential libssl-dev pkg-config clang
         BUILD_CMD: cargo install --path . --locked --bin nomic
-        BUILD_PATH: /usr/local/cargo/bin
+        BINARY_PATH: /usr/local/cargo/bin/nomic
         PROJECT_DIR: .nomic-stakenet-3/tendermint
     ports:
       - '26656:26656'
