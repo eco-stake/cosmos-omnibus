@@ -14,6 +14,7 @@ services:
         BUILD_CMD: cargo install --path . --locked --bin nomic
         BINARY_PATH: /usr/local/cargo/bin/nomic
         PROJECT_DIR: .nomic-stakenet-3/tendermint
+        VERSION_CMD: nomic --version
     ports:
       - '26656:26656'
       - '26657:26657'
