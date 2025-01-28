@@ -6,7 +6,7 @@ services:
       context: ../
       args:
         PROJECT: nomic
-        VERSION: v11.0.0
+        VERSION: v12.0.2
         REPOSITORY: https://github.com/nomic-io/nomic
         NAMESPACE: TM
         BUILD_IMAGE: rustlang/rust:nightly-bookworm
