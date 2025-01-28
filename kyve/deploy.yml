@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   node:
-    image: ghcr.io/akash-network/cosmos-omnibus:v1.1.1-kyve-v1.5.0
+    image: ghcr.io/akash-network/cosmos-omnibus:v1.2.0-kyve-v1.5.0
     env:
       - MONIKER=Cosmos Omnibus Node
       - P2P_POLKACHU=1
@@ -26,7 +26,7 @@ profiles:
         cpu:
           units: 4
         memory:
-          size: 8Gi
+          size: 32Gi
         storage:
           - size: 10Gi
           - name: data # remove for non-persistent storage

@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   node:
-    image: ghcr.io/akash-network/cosmos-omnibus:v1.1.1-impacthub-v0.18.1
+    image: ghcr.io/akash-network/cosmos-omnibus:v1.2.0-impacthub-v0.18.1
     env:
       - MONIKER=Cosmos Omnibus Node
     expose:
@@ -23,7 +23,7 @@ profiles:
         cpu:
           units: 4
         memory:
-          size: 8Gi
+          size: 32Gi
         storage:
           - size: 10Gi
           - name: data # remove for non-persistent storage

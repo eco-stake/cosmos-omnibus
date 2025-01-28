@@ -6,8 +6,8 @@
 |Binary|`injectived`|
 |Directory|`.injectived`|
 |ENV namespace|`INJECTIVED`|
-|Repository|`null`|
-|Image|`ghcr.io/akash-network/cosmos-omnibus:v1.1.1-injective-v1.13.3`|
+|Repository|`https://github.com/InjectiveLabs/injective-chain-releases`|
+|Image|`ghcr.io/akash-network/cosmos-omnibus:v1.2.0-injective-v1.13.3`|
 
 ## Examples
 

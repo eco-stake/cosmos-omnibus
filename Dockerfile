@@ -33,9 +33,8 @@ ARG BUILD_PATH=.
 ARG BUILD_REF=$VERSION
 ARG BINARY_PATH=$GOPATH/bin/$PROJECT_BIN
 
-RUN git clone $REPOSITORY source && \
+RUN git clone --depth 1 --branch $BUILD_REF $REPOSITORY source && \
     cd /data/source/$BUILD_PATH && \
-    git checkout $BUILD_REF && \
     $BUILD_CMD && \
     mv $BINARY_PATH /bin/$PROJECT_BIN
 
@@ -90,6 +89,21 @@ FROM build_${BUILD_METHOD} AS build
 #
 FROM ${BASE_IMAGE} AS base
 
+RUN apt-get update && \
+    apt-get install --no-install-recommends --assume-yes \
+    ca-certificates curl wget file unzip zstd liblz4-tool gnupg2 jq s3cmd pv && \
+    apt-get clean
+
+# Install Storj DCS uplink client
+RUN curl -L https://github.com/storj/storj/releases/latest/download/uplink_linux_amd64.zip -o uplink_linux_amd64.zip && \
+    unzip -o uplink_linux_amd64.zip && \
+    install uplink /usr/bin/uplink && \
+    rm -f uplink uplink_linux_amd64.zip
+
+# Copy scripts
+COPY entrypoint.sh snapshot.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh /usr/bin/snapshot.sh
+
 #
 # Base image copying build artifacts
 #
@@ -106,11 +120,6 @@ COPY --from=build /data/deps/ /
 #
 FROM ${BASE_METHOD} AS omnibus
 LABEL org.opencontainers.image.source=https://github.com/akash-network/cosmos-omnibus
-
-RUN apt-get update && \
-    apt-get install --no-install-recommends --assume-yes \
-    ca-certificates curl wget file unzip zstd liblz4-tool gnupg2 jq s3cmd pv && \
-    apt-get clean
 
 ARG PROJECT
 ARG PROJECT_BIN
@@ -139,16 +148,6 @@ EXPOSE 26656 \
        1317  \
        9090  \
        8080
-
-# Install Storj DCS uplink client
-RUN curl -L https://github.com/storj/storj/releases/latest/download/uplink_linux_amd64.zip -o uplink_linux_amd64.zip && \
-    unzip -o uplink_linux_amd64.zip && \
-    install uplink /usr/bin/uplink && \
-    rm -f uplink uplink_linux_amd64.zip
-
-# Copy scripts
-COPY entrypoint.sh snapshot.sh /usr/bin/
-RUN chmod +x /usr/bin/entrypoint.sh /usr/bin/snapshot.sh
 
 WORKDIR /root
 ENTRYPOINT ["entrypoint.sh"]

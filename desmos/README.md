@@ -6,8 +6,8 @@
 |Binary|`desmos`|
 |Directory|`.desmos`|
 |ENV namespace|`DESMOS`|
-|Repository|`null`|
-|Image|`ghcr.io/akash-network/cosmos-omnibus:v1.1.1-desmos-v6.2.0`|
+|Repository|`https://github.com/desmos-labs/desmos`|
+|Image|`ghcr.io/akash-network/cosmos-omnibus:v1.2.0-desmos-v6.2.0`|
 
 ## Examples
 
