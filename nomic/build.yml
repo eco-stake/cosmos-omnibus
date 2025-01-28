@@ -10,8 +10,9 @@ services:
         REPOSITORY: https://github.com/nomic-io/nomic
         NAMESPACE: TM
         BUILD_IMAGE: rustlang/rust:nightly-bookworm
-        BUILD_PACKAGES: build-essential libssl-dev pkg-config clang
+        BUILD_PACKAGES: build-essential pkg-config clang
         BUILD_CMD: cargo install --path . --locked --bin nomic
+        BASE_PACKAGES: libssl-dev
         BINARY_PATH: /usr/local/cargo/bin/nomic
         PROJECT_DIR: .nomic-stakenet-3/tendermint
         VERSION_CMD: nomic --version

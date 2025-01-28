@@ -89,9 +89,11 @@ FROM build_${BUILD_METHOD} AS build
 #
 FROM ${BASE_IMAGE} AS base
 
+ARG BASE_PACKAGES
+
 RUN apt-get update && \
     apt-get install --no-install-recommends --assume-yes \
-    ca-certificates curl wget file unzip zstd liblz4-tool gnupg2 jq s3cmd pv && \
+    ca-certificates curl wget file unzip zstd liblz4-tool gnupg2 jq s3cmd pv ${BASE_PACKAGES} && \
     apt-get clean
 
 # Install Storj DCS uplink client
