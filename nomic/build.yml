@@ -9,7 +9,8 @@ services:
         VERSION: v12.0.2
         REPOSITORY: https://github.com/nomic-io/nomic
         NAMESPACE: TM
-        BUILD_IMAGE: rustlang/rust:nightly-bookworm
+        DEBIAN_VERSION: bullseye
+        BUILD_IMAGE: rustlang/rust:nightly-bullseye
         BUILD_PACKAGES: build-essential pkg-config clang
         BUILD_CMD: cargo install --path . --locked --bin nomic
         BASE_PACKAGES: libssl-dev
