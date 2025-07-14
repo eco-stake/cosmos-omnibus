@@ -1,6 +1,6 @@
 services:
   node:
-    image: ghcr.io/akash-network/cosmos-omnibus:v1.2.0-mars-v1.0.2
+    image: ghcr.io/akash-network/cosmos-omnibus:v1.2.21-atomone-v2.0.0
     ports:
       - '26656:26656'
       - '26657:26657'
@@ -11,4 +11,4 @@ services:
       - STATESYNC_POLKACHU=1
       - ADDRBOOK_POLKACHU=1
     volumes:
-      - ./node-data:/root/.mars
+      - ./node-data:/root/.atomone

@@ -2,12 +2,12 @@
 
 | | |
 |---|---|
-|Version|`v0.36.0`|
+|Version|`v0.38.1`|
 |Binary|`akash`|
 |Directory|`.akash`|
 |ENV namespace|`AKASH`|
 |Repository|`https://github.com/akash-network/node`|
-|Image|`ghcr.io/akash-network/cosmos-omnibus:v1.2.0-akash-v0.36.0`|
+|Image|`ghcr.io/akash-network/cosmos-omnibus:v1.2.21-akash-v0.38.1`|
 
 ## Examples
 
@@ -31,7 +31,7 @@ The following configuration is recommended for Akash nodes.
 
 ## Polkachu Chain Services
 
-[Polkachu's Chain Services](https://www.polkachu.com/) make bootstrapping a node extremely easy. They provide live peers, seeds, statesync, addrbooks and pruned snapshots among other features.
+[Polkachu's Chain Services](https://www.polkachu.com/networks/akash) make bootstrapping a node extremely easy. They provide live peers, seeds, statesync, addrbooks and pruned snapshots among other features.
 
 The following configuration is available for Akash nodes. [See the documentation](../README.md#polkachu-services) for more information.
 

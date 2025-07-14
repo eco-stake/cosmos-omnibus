@@ -2,12 +2,12 @@
 
 | | |
 |---|---|
-|Version|`v5.1.0`|
+|Version|`v6.0.0`|
 |Binary|`omniflixhubd`|
 |Directory|`.omniflixhub`|
 |ENV namespace|`OMNIFLIXHUBD`|
 |Repository|`https://github.com/OmniFlix/omniflixhub`|
-|Image|`ghcr.io/akash-network/cosmos-omnibus:v1.2.0-omniflixhub-v5.1.0`|
+|Image|`ghcr.io/akash-network/cosmos-omnibus:v1.2.21-omniflixhub-v6.0.0`|
 
 ## Examples
 
@@ -22,7 +22,7 @@ This will be used automatically unless overridden with the `CHAIN_JSON` variable
 
 ## Polkachu Chain Services
 
-[Polkachu's Chain Services](https://www.polkachu.com/) make bootstrapping a node extremely easy. They provide live peers, seeds, statesync, addrbooks and pruned snapshots among other features.
+[Polkachu's Chain Services](https://www.polkachu.com/networks/omniflix) make bootstrapping a node extremely easy. They provide live peers, seeds, statesync, addrbooks and pruned snapshots among other features.
 
 The following configuration is available for OmniFlix nodes. [See the documentation](../README.md#polkachu-services) for more information.
 
@@ -34,4 +34,4 @@ The following configuration is available for OmniFlix nodes. [See the documentat
 |`STATESYNC_POLKACHU`|`1`|
 |`ADDRBOOK_POLKACHU`|`1`|
 
-Polkachu also provide pruned snapshots for OmniFlix. Find the [latest snapshot](https://polkachu.com/tendermint_snapshots/akash) and apply it using the `SNAPSHOT_URL` variable.
+Polkachu also provide pruned snapshots for OmniFlix. Find the [latest snapshot](https://polkachu.com/tendermint_snapshots/omniflix) and apply it using the `SNAPSHOT_URL` variable.
