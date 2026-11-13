@@ -7,7 +7,7 @@ services:
         PROJECT_BIN: osmosisd
         VERSION: v32.0.0
         REPOSITORY: https://github.com/osmosis-labs/osmosis
-        GOLANG_VERSION: 1.24
+        GOLANG_VERSION: 1.26
         DEBIAN_VERSION: bookworm
     ports:
       - '26656:26656'
